@@ -35,6 +35,6 @@ urlpatterns = [
     url(r'^d/(?P<pk>\d+)/pdf$', DeclaracionPDF.as_view(), name='pdf'),
     url(r'^d/(?P<pk>\d+)/png$', DeclaracionPNG.as_view(), name='png'),
     url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'} name='logout'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^admin/', admin.site.urls),
 ]
