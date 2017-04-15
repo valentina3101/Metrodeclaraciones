@@ -152,7 +152,10 @@ div.login   {
 <a class="navigation-title" href="/"><h1 class="title">Metrodeclaración</h1></a>
 <ul class="navigation-list float-right">
     <li class="navigation-item">
-        <a class="navigation-link" href="{% url 'create' %}">Crear Nueva</a></li></ul>
+        <a class="navigation-link" href="{% url 'create' %}">Crear Nueva</a></li>
+<li class="navigation-item">
+        <a class="navigation-link" href="{% url 'logout' %}">Salir</a></li>
+</ul>
 </section></nav>
 
     {% block body %}
