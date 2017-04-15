@@ -1,4 +1,4 @@
 Django==1.11
 django-model-utils==3.0.0
 django-trix==0.3.0
-git+https://github.com/fdemmer/django-weasyprint==0.3
+git+https://github.com/fdemmer/django-weasyprint
