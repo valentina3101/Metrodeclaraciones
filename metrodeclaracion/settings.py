@@ -25,7 +25,7 @@ SECRET_KEY = '%^!$2+zax+pl+!k&v_v3ki26q)emd!v%=%t*dwo3=-+xi*ie1_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.1.108']
+ALLOWED_HOSTS = ['localhost', '192.168.1.108', 'declaraciones.metrodelegados.com.ar']
 
 
 # Application definition
