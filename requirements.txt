@@ -1,0 +1,4 @@
+Django==1.11
+django-model-utils==3.0.0
+django-trix==0.3.0
+django-weasyprint==0.3

@@ -1,0 +1,44 @@
+{% extends "declaracion/base.html" %}
+
+
+{% block container %}
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Estado</th>
+      <th>Fecha</th>
+      <th>Cargado por</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for object in object_list %}
+    <tr>
+      <td><a href="{{ object.get_absolute_url }}">{{ object.título }}</a></td>
+      <td>{{ object.estado }}</td>
+      <td>{{ object.fecha }}</td>
+      <td>{{ object.cargado_por }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/?page={{ page_obj.previous_page_number }}">«anterior </a>
+                {% endif %}
+                <span class="page-current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/?page={{ page_obj.next_page_number }}"> siguiente»</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+
+{% endblock container %}

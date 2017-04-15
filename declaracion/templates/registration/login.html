@@ -1,0 +1,13 @@
+{% extends "declaracion/base.html" %}
+
+
+{% block container %}
+
+<div class="login">
+<form method='post'>
+    {% csrf_token %}
+    {{form}}
+    <input class="button-primary" type="submit" value="Ingresar">
+</form>
+</div>
+{% endblock container %}
