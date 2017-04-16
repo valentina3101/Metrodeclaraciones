@@ -24,14 +24,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%^!$2+zax+pl+!k&v_v3ki26q)emd!v%=%t*dwo3=-+xi*ie1_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
-    'declaraciones.metrodelegados.com.ar',
     'declaraciones.sindicatodelsubte.com.ar',
+
+    # legacy domain
+    'declaraciones.metrodelegados.com.ar',
 ]
 
+# ensure redirect via middleware
+ENFORCE_HOSTNAME = [
+    'declaraciones.sindicatodelsubte.com.ar',
+]
 
 # Application definition
 
@@ -55,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'declaracion.middleware.enforce_hostname',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
