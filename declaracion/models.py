@@ -22,5 +22,5 @@ class Declaracion(models.Model):
         return reverse('update', kwargs={'pk': self.pk})
 
     class Meta:
-        ordering = ('estado', '-fecha')
+        ordering = ('estado', '-fecha', '-id')
 
