@@ -9,7 +9,6 @@ def enforce_hostname(get_response):
     The ENFORCE_HOSTNAME can either be a single host or a list of acceptable hosts
     """
     def middleware(request):
-        import ipdb; ipdb.set_trace()
         """Enforce the host name"""
         response = get_response(request)
         allowed_hosts = getattr(settings, 'ENFORCE_HOSTNAME', None)
