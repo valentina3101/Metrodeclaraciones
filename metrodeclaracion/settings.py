@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,11 @@ SECRET_KEY = '%^!$2+zax+pl+!k&v_v3ki26q)emd!v%=%t*dwo3=-+xi*ie1_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.1.108', 'declaraciones.metrodelegados.com.ar']
+ALLOWED_HOSTS = [
+    'localhost',
+    'declaraciones.metrodelegados.com.ar',
+    'declaraciones.sindicatodelsubte.com.ar',
+]
 
 
 # Application definition
@@ -126,3 +131,5 @@ LOGIN_URL = 'login'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'public', 'static')
 STATIC_URL = '/static/'
+
+from local_settings import *
