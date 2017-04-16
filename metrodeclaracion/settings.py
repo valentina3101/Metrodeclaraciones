@@ -132,4 +132,7 @@ LOGIN_URL = 'login'
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'public', 'static')
 STATIC_URL = '/static/'
 
-from local_settings import *
+try:
+    from local_settings import *
+except ImportError:
+    pass
