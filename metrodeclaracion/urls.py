@@ -29,7 +29,7 @@ from declaracion.views import (
 
 urlpatterns = [
     url(r'^$', ListView.as_view(), name='list'),
-    url(r'^nuevo$', CreateView.as_view(), name='create'),
+    url(r'^nueva$', CreateView.as_view(), name='create'),
     url(r'^d/(?P<pk>\d+)$', UpdateView.as_view(), name='update'),
     url(r'^d/(?P<pk>\d+)/html$', DeclaracionHTML.as_view(), name='html'),
     url(r'^d/(?P<pk>\d+)/pdf$', DeclaracionPDF.as_view(), name='pdf'),

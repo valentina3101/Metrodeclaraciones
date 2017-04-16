@@ -1,0 +1,110 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="CJ Patoilo">
+		<meta name="description" content="Milligram provides a minimal setup of styles for a fast and clean starting point. Specially designed for better performance and higher productivity with fewer properties to reset resulting in cleaner code.">
+		<title>Metrodeclaración | Sindicato del Subte</title>
+
+
+	    <!-- Google Fonts -->
+	    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+	    <!-- CSS Reset -->
+	    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+
+	    <!-- Milligram CSS minified -->
+	    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
+	    <link rel="stylesheet" href="{% static 'declaracion/main.css' %}">
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+{{ form.media }}
+<style type="text/css">
+
+
+     footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 3.5rem;
+            font-size: 1.2rem;
+            text-decoration: foo;
+            background: #ddd;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+</style>
+
+	</head>
+	<body>
+
+		<main class="wrapper">
+
+
+			<nav class="navigation">
+				<section class="container">
+					<a class="navigation-title" href="/">
+						<h1 class="title">Metrodeclaración</h1>
+					</a>
+					{% if user.is_authenticated %}
+
+
+					<ul class="navigation-list float-right">
+						<li class="navigation-item">
+							<a class="navigation-link" href="{% url 'create' %}">Crear</a>
+						</li>
+						<li class="navigation-item">
+							<a class="navigation-link" href="{% url 'logout' %}">Salir</a></li>
+						</li>
+					</ul>
+					{% endif %}
+				</section>
+			</nav>
+
+			<section class="container" >
+
+
+					{% if messages %}
+					    {% for message in messages %}
+					    <button class="button button-outline button-small">{{ message }}</button>
+					    {% endfor %}
+					</ul>
+					{% endif %}
+
+
+					{% block container %}
+					{%  endblock %}
+			</section>
+
+
+			<footer class="footer">
+				<section class="container">
+
+				        {% block footer %}
+				        <p>
+				Secretaría de Prensa y Comunicación - Asociación Gremial de Trabajadores del Subte y el Premetro<br/>
+				</p>
+				        {% endblock %}
+
+				</section>
+			</footer>
+
+		</main>
+
+
+	</body>
+<script type="text/javascript" src="http://milligram.github.io/scripts/main.js"></script>
+	{% if object.estado == 'publicado' %}
+	<script type="text/javascript">
+	$('form').submit(function() {
+	    var c = confirm("Esta declaración ya está publicada. ¿está seguro que quiere modificarla");
+	    return c;
+	});
+	</script>
+	{% endif %}
+</html>

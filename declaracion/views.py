@@ -12,15 +12,16 @@ from django_weasyprint import WeasyTemplateResponseMixin
 class BaseView(LoginRequiredMixin):
     model = Declaracion
     form_class = DeclaracionForm
-    template_name = 'declaracion/base.html'
+    template_name = 'base.html'
 
 
 class ListView(BaseView, generic.ListView):
-    template_name = 'declaracion/list.html'
+    template_name = 'declaracion/list.html' # 'declaracion/list.html'
     paginate_by = 10
 
 
 class CreateView(BaseView, edit.CreateView):
+    template_name = 'declaracion/form.html'
 
     def form_valid(self, form):
         messages.info(self.request, 'Declaración «{}» creada correctamente'.format(form.instance.título))
@@ -29,6 +30,7 @@ class CreateView(BaseView, edit.CreateView):
 
 
 class UpdateView(BaseView, edit.UpdateView):
+    template_name = 'declaracion/form.html'
 
     def form_valid(self, form):
         messages.info(self.request, 'Declaración «{}» modificada correctamente'.format(form.instance.título))
@@ -37,7 +39,7 @@ class UpdateView(BaseView, edit.UpdateView):
 
 class DeclaracionHTML(generic.DetailView):
     model = Declaracion
-    template_name = 'declaracion/declaracion2.html'
+    template_name = 'declaracion/declaracion.html'
 
 
 class DeclaracionPDF(WeasyTemplateResponseMixin, DeclaracionHTML):

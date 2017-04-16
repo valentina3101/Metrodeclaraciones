@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+   {% block container %}
+        <form method='post'>
+            {% csrf_token %}
+            {{form}}
+
+        <input class="button-primary" type="submit" value="Guardar">
+
+
+    {% if object %}
+
+    <h5>Exportar</h5>
+
+        <a class="button button-primary" href="{% url 'pdf' object.pk %}">PDF</a>
+        <a class="button button-primary" href="{% url 'png' object.pk %}">PNG</a>
+        <a class="button button-primary" href="{% url 'html' object.pk %}">HTML</a>
+    {% endif %}
+        </form>
+    {% endblock container %}
