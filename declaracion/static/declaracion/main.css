@@ -197,3 +197,9 @@
     background-color: #fff;
     margin-bottom: 0
 }
+
+.trix-content {
+    font-family: sans-serif;
+    color: #000;
+    min-height: 24rem;
+}
