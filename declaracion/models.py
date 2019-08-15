@@ -10,7 +10,8 @@ from trix.fields import TrixField
 class Declaracion(models.Model):
     ESTADOS = Choices('borrador', 'publicado')
     fecha_publicacion = MonitorField(monitor='estado', when=['publicado'], editable=False)
-    cargado_por = models.ForeignKey(settings.AUTH_USER_MODEL, editable=False)
+    cargado_por = models.ForeignKey(settings.AUTH_USER_MODEL, editable=False, on_delete=models.CASCADE)
+    
     título = models.CharField(max_length=100)
     fecha = models.DateField(default=date.today())
     declaración = TrixField()

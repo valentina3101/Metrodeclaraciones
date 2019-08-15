@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
+
+
+
 from declaracion.views import (
     CreateView,
     UpdateView,
@@ -34,7 +37,7 @@ urlpatterns = [
     url(r'^d/(?P<pk>\d+)/html$', DeclaracionHTML.as_view(), name='html'),
     url(r'^d/(?P<pk>\d+)/pdf$', DeclaracionPDF.as_view(), name='pdf'),
     url(r'^d/(?P<pk>\d+)/png$', DeclaracionPNG.as_view(), name='png'),
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url( r'^login/$',auth_views.LoginView.as_view() , name="login"),
+    url(r'^logout/$', auth_views.LogoutView, {'next_page': '/'}, name='logout'),
     url(r'^admin/', admin.site.urls),
 ]
