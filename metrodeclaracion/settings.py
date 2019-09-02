@@ -69,6 +69,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'metrodeclaracion.urls'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Subidas')
 
 TEMPLATES = [
     {
