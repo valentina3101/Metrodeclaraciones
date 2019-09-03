@@ -48,9 +48,9 @@ class DeclaracionHTML(generic.DetailView):
          #   return ['declaracion/declaracion2.html']
         #else:
             #return ['declaracion/declaracion.html']
-        template =str(declaracion.plantilla.archivo)
-        template =os.path.join(settings.MEDIA_ROOT,plantilla)
-        return [plantilla]
+        template =str(declaracion.template.archivo)
+        template =os.path.join(settings.MEDIA_ROOT,template)
+        return [template]
        
 
 
