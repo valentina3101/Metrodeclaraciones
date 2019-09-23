@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trix',
+	'django_summernote',
     'declaracion'
 ]
 
@@ -74,7 +75,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'Subidas')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+
+		# declaramos un directorio extra para que django encuentre TEMPLATES
+		# que se usaran desde las vistas
+		'DIRS': [os.path.join(BASE_DIR, 'pdf_templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -41,17 +41,14 @@ class UpdateView(BaseView, edit.UpdateView):
 
 class DeclaracionHTML(generic.DetailView):
     model = Declaracion
-    
+
     def get_template_names(self):
         declaracion=self.get_object()
-        #if objeto.plantilla == 'nueva':
-         #   return ['declaracion/declaracion2.html']
-        #else:
-            #return ['declaracion/declaracion.html']
-        template =str(declaracion.template.archivo)
-        template =os.path.join(settings.MEDIA_ROOT,template)
-        return [template]
-       
+        plantilla = os.path.join(settings.BASE_DIR, 'pdf_templates', 'declaracion.html')
+        # acá escribimos el contenido "editable" del template en un archivo
+        open(plantilla, 'w').write(declaracion.template.contenido + declaraciónion.template.pie)
+        return [plantilla]
+
 
 
 class DeclaracionPDF(WeasyTemplateResponseMixin, DeclaracionHTML):
@@ -60,4 +57,3 @@ class DeclaracionPDF(WeasyTemplateResponseMixin, DeclaracionHTML):
 
 class DeclaracionPNG(DeclaracionPDF):
 	content_type = 'image/png'
-
