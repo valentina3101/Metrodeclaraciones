@@ -46,7 +46,7 @@ class DeclaracionHTML(generic.DetailView):
         declaracion=self.get_object()
         plantilla = os.path.join(settings.BASE_DIR, 'pdf_templates', 'declaracion.html')
         # acá escribimos el contenido "editable" del template en un archivo
-        open(plantilla, 'w').write(declaracion.template.contenido + declaraciónion.template.pie)
+        open(plantilla, 'w').write(declaracion.template.contenido + declaracion.template.pie)
         return [plantilla]
 
 

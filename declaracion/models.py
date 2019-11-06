@@ -43,6 +43,8 @@ class Template(models.Model):
     nombre = models.CharField(max_length=100,)
     contenido = models.TextField()
     #contenido_extra = TrixField()
+    pie = models.TextField()
+    
 
     def __str__(self):
         return self.nombre
