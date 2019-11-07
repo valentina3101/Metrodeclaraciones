@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.views.generic import edit
-from .models import Declaracion
+from .models import Declaracion, Template
 from .forms import DeclaracionForm
 from django.conf import settings
 import os
@@ -15,6 +15,13 @@ class BaseView(LoginRequiredMixin):
     model = Declaracion
     form_class = DeclaracionForm
     template_name = 'base.html'
+
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+        grupos_del_user = self.request.user.groups.all()
+        templates_del_user = Template.objects.filter(groups__in=grupos_del_user).distinct()
+        form.fields['template'].choices = [(t.id, str(t)) for t in templates_del_user]
+        return form
 
 
 class ListView(BaseView, generic.ListView):

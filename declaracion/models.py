@@ -44,6 +44,7 @@ class Template(models.Model):
     contenido = models.TextField()
     #contenido_extra = TrixField()
     pie = models.TextField()
+    groups = models.ManyToManyField("auth.Group")
     
 
     def __str__(self):

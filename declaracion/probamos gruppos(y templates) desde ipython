@@ -1,0 +1,62 @@
+AttributeError                            Traceback (most recent call last)
+<ipython-input-7-95ded9d8c819> in <module>
+----> 1 user = User.object.get(id=1)
+
+AttributeError: type object 'User' has no attribute 'object'
+
+In [8]: user = User.objects.get(id=1)                                                                           
+
+In [9]: user.groups__in= user.groups.all()                                                                      
+
+In [10]: print user                                                                                             
+  File "<ipython-input-10-25551b70c32f>", line 1
+    print user
+             ^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(user)?
+
+
+In [11]: print(user)                                                                                            
+valentina
+
+In [12]: print(user.groups.all)                                                                                 
+<bound method BaseManager.all of <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0xb540cdcc>>
+
+In [13]: groups__in= user.groups.all()                                                                          
+
+In [14]: print (groups__in)                                                                                     
+<QuerySet []>
+
+In [15]: user                                                                                                   
+Out[15]: <User: valentina>
+
+In [16]: user                                                                                                   
+Out[16]: <User: valentina>
+
+In [17]: user.groups.all()                                                                                      
+Out[17]: <QuerySet [<Group: Agencia_de_Ciencias>, <Group: Agencia Tecnologica>]>
+
+In [18]: from declaracion.models import Template                                                                
+
+In [19]: Template.objects.filter(groups__in=user.groups.all())                                                  
+Out[19]: <QuerySet [<Template: temp_ ciencias>, <Template: temp_Tec>]>
+
+In [20]: Template.objects.filter(groups__in=user.groups.all())                                                  
+Out[20]: <QuerySet [<Template: temp_ ciencias>, <Template: integracion>, <Template: temp_Tec>, <Template: integracion>]>
+
+In [21]: Template.objects.filter(groups__in=user.groups.all()).distinct                                         
+Out[21]: <bound method QuerySet.distinct of <QuerySet [<Template: temp_ ciencias>, <Template: integracion>, <Template: temp_Tec>, <Template: integracion>]>>
+
+In [22]: Template.objects.filter(groups__in=user.groups.all()).distinct()                                       
+Out[22]: <QuerySet [<Template: temp_ ciencias>, <Template: integracion>, <Template: temp_Tec>]>
+
+In [23]: qs = Template.objects.filter(groups__in=user.groups.all())                                             
+
+In [24]: qs2 = Template.objects.filter(groups__in=user.groups.all()).distinct()                                 
+
+In [25]: print(qs.query)                                                                                        
+SELECT "declaracion_template"."id", "declaracion_template"."nombre", "declaracion_template"."contenido", "declaracion_template"."pie" FROM "declaracion_template" INNER JOIN "declaracion_template_groups" ON ("declaracion_template"."id" = "declaracion_template_groups"."template_id") WHERE "declaracion_template_groups"."group_id" IN (SELECT U0."id" FROM "auth_group" U0 INNER JOIN "auth_user_groups" U1 ON (U0."id" = U1."group_id") WHERE U1."user_id" = 1)
+
+In [26]: print(qs2.query)                                                                                       
+SELECT DISTINCT "declaracion_template"."id", "declaracion_template"."nombre", "declaracion_template"."contenido", "declaracion_template"."pie" FROM "declaracion_template" INNER JOIN "declaracion_template_groups" ON ("declaracion_template"."id" = "declaracion_template_groups"."template_id") WHERE "declaracion_template_groups"."group_id" IN (SELECT U0."id" FROM "auth_group" U0 INNER JOIN "auth_user_groups" U1 ON (U0."id" = U1."group_id") WHERE U1."user_id" = 1)
+
+In [27]: }                                                                             
